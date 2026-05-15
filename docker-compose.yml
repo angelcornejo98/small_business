@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app_vms:
+    build: /media/ancor/Seagate Barracuda 1TB/Workspace/SmallBussinesKnut/vms
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:mysql://bussines_ms:3306/bussines_ms?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USER_NAME: dev
+      DB_PASSWORD: Hola1234!
+    restart: always
+    depends_on:
+      bussines_ms:
+        condition: service_healthy
+
+  bussines_ms:            
+    image: mysql:8.0      
+    ports:
+      - "3307:3306"       
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bussines_ms
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: Hola1234!
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
