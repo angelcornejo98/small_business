@@ -1,26 +1,35 @@
 package com.knut.vms.controller;
 
 //import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 public class TestAuthController {
 
-    @GetMapping("/hello")
-
-    public String hello() {
-        return "Hello World";
+    @GetMapping("/get")
+    public String helloGet() {
+        return "Hello World - GET";
     }
 
-    @GetMapping("/hello-secured")
-
-    public String helloSecured() {
-        return "Hello World Secured";
+    @PostMapping("/post")
+    public String helloPost() {
+        return "Hello World - POST";
     }
 
-    @GetMapping("/hello-secured2")
-    public String helloSecured2() { return "Hello World secured2";}
+    @PutMapping("/put")
+    public String helloPut() {
+        return "Hello World - PUT";
+    }
+
+    @DeleteMapping("/delete")
+    public String helloDelete() {
+        return "Hello World - DELETE";
+    }
+
+    @PatchMapping("/patch")
+    public String helloPatch() {
+        return "Hello World - PATCH";
+    }
 }
